@@ -18,8 +18,8 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 const allowedOrigins = [
-  "http://localhost:5173",
-  // "https://vjn-freelance-marketplace.netlify.app",
+  // "http://localhost:5173",
+  "https://vjn-freelance-marketplace.netlify.app",
 ];
 
 const corsOptions = {
