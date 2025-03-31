@@ -7,7 +7,7 @@ const serviceController = {
     const {
       title,
       description,
-      budget,
+      price,
       category,
       availability,
       workSamples,
@@ -19,7 +19,7 @@ const serviceController = {
         freelancerID: req.user.id,
         title: req.body.title,
         description: req.body.description,
-        budget: req.body.budget,
+        price: req.body.price,
         category: req.body.category,
         availability: req.body.availability,
         workSamples: req.body.workSamples || [],
@@ -131,7 +131,7 @@ const serviceController = {
 
   // Get all services with search and filter
   searchJobs: async (req, res) => {
-    const { search, category, minBudget, maxBudget } = req.query;
+    const { search, category, minprice, maxprice } = req.query;
     const query = {};
 
     if (search) {
@@ -140,13 +140,13 @@ const serviceController = {
     if (category) {
       query.category = category;
     }
-    if (minBudget) {
-      query.budget = { $gte: minBudget };
+    if (minprice) {
+      query.price = { $gte: minprice };
     }
-    if (maxBudget) {
-      query.budget = query.budget
-        ? { ...query.budget, $lte: maxBudget }
-        : { $lte: maxBudget };
+    if (maxprice) {
+      query.price = query.price
+        ? { ...query.price, $lte: maxprice }
+        : { $lte: maxprice };
     }
 
     try {

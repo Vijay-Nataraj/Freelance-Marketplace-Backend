@@ -48,6 +48,14 @@ const proposalController = {
         return res.status(404).json({ message: "Proposal not found" });
       }
 
+      // If rejected, delete the proposal from the database
+      if (status === "Rejected") {
+        await Proposal.findByIdAndDelete(req.params.id);
+        return res
+          .status(200)
+          .json({ message: "Proposal rejected and deleted" });
+      }
+
       proposal.status = status;
 
       if (status === "Accepted") {

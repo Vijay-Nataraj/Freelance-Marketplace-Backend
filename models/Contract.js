@@ -20,7 +20,7 @@ const contractSchema = new mongoose.Schema(
         payment: { type: Number, required: true },
         status: {
           type: String,
-          enum: ["Pending", "Completed"],
+          enum: ["Not Started", "Started", "Completed"],
           default: "Pending",
         },
       },

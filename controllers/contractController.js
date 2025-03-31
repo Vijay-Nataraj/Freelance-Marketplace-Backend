@@ -32,6 +32,24 @@ const contractController = {
       res.status(500).json({ message: error.message });
     }
   },
+
+  getContractByContractId: async (req, res) => {
+    try {
+      const contractId = req.params.contractId;
+
+      const contract = await Contract.findById(contractId)
+        .populate("jobId", "title")
+        .populate("clientId", "name email");
+
+      if (!contract) {
+        return res.status(404).json({ message: "Contract not found" });
+      }
+
+      res.status(200).json(contract);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  },
 };
 
 module.exports = contractController;

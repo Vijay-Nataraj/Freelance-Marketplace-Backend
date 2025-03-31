@@ -18,4 +18,10 @@ contractRouter.get(
   contractController.getContractsForFreelancer
 );
 
+contractRouter.get(
+  "/:contractId",
+  auth.checkAuth,
+  contractController.getContractByContractId
+);
+
 module.exports = contractRouter;
